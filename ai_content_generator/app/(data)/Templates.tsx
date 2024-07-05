@@ -11,7 +11,7 @@ export default [
                 label:'Enter your blog nich',
                 field:'input',
                 name:'niche',
-                required:'true'
+                required:true
             },
             {
                 label:'Enter  blog outline',
