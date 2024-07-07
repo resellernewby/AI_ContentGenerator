@@ -48,18 +48,28 @@ function CreateNewContent(props: PROPS) {
     }
   };
 
-  const SaveInDb = async(formData:any,slug:any,aiOutput:any)=>{
-    const result = await db.insert(AIOutput).values({
-      formData:formData,
-      templateSlug:slug,
-      aiResponse:aiOutput,
-      createdBy:user?.primaryEmailAddress?.emailAddress,
-      createdAt:moment().format('DD/MM/YYYY'),
-     
-
-    });
-
-    console.log(result);
+  const SaveInDb = async (formData: any, slug: any, aiOutput: any) => {
+    const { user } = useUser();
+    console.log('User data:', user);
+    console.log('came to database');
+  
+    if (!user) {
+      throw new Error('User is not authenticated');
+    }
+  
+    try {
+      const result = await db.insert(AIOutput).values({
+        formData: formData,
+        templateSlug: slug,
+        aiResponse: aiOutput,
+        createdBy: user?.primaryEmailAddress?.emailAddress,
+        createdAt: moment().format('DD/MM/YYYY'),
+      });
+      console.log(result);
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      throw new Error('Failed to insert data');
+    }
   };
 
   return (
