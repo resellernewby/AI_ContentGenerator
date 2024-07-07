@@ -5,12 +5,14 @@ import { AIOutput } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AIOUTPUTDATA } from "../history/page";
+import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
 
 function UsageTrack() {
   const { user } = useUser();
-  const [totalUsage, setTotalUsage] = useState<number>(0);
+  const {totalUsage, setTotalUsage} = useContext(TotalUsageContext);
+ 
 
   const GetData = async () => {
     {
