@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FileClock, Home, Settings, WalletCards } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -28,12 +28,16 @@ function SideNav() {
     },
   ];
 
+
+
+  
+
   const path = usePathname();
   useEffect(() => {
     console.log(path);
   }, []);
   return (
-    <div className="h-screen p-5 shadow-sm border">
+    <div className="h-screen p-5 shadow-sm border bg-white">
       <div className="flex justify-center mb-2">
         <Image src={"/logo.svg"} alt="logo" width={50} height={100} />
       </div>

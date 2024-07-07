@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import SideNav from "./_components/SideNav";
 import Header from "./_components/Header";
 
@@ -7,14 +8,15 @@ function layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [userSearchInput,setUserSeachInput] = useState<string>();
   return (
-    <div>
+    <div className="bg-slate-100 h-full">
       <div className="md:w-64 hidden md:block fixed">
-        <SideNav />
+        <SideNav/>
       </div>
 
       <div className="md:ml-64">
-        <Header/>
+        <Header />
         {children}
       </div>
     </div>
